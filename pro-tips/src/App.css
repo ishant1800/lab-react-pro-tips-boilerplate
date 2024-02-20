@@ -1,0 +1,27 @@
+#root {
+  margin: 0;
+  text-align: center;
+}
+body{
+  margin: 0;
+}
+#navBar{
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  width: 100vw;;
+}
+#contactsAbout{
+  display: flex;
+  padding: 5px;
+}
+h3{
+  padding: 0px 10px;
+}
+.links{
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
