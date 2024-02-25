@@ -1,26 +1,32 @@
 import { useState } from 'react'
 import './form.css'
 
-function Form() {
+function FormA() {
+  const initialState = {
+    username: "",
+    lastname: "",
+    email: "",
+    phoneno: ""
+  };
 
-  const [formData, setFormData] = useState({username:"", lastname:"", email:"", phone:""})
-  const [formErrors, setFormErrors] = useState({})
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [formData, setFormData] = useState(initialState);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({...formData, [name]: value})
-  }
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formData))
+    setFormErrors(validate(formData));
     setIsSubmitted(true);
-  }
+  };
 
   const validate = (values) => {
-    let errors = {}
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+    let errors = {};
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     if (!values.username) {
       errors.username = "Please enter your first name";
@@ -33,34 +39,64 @@ function Form() {
     } else if (!regex.test(values.email)) {
       errors.email = "Invalid Email Id";
     }
-    if (!values.phone) {
-      errors.phone = "Please enter your phone number";
-    } else if (values.phone.length !== 10) {
-      errors.phone = "Invalid phone number"
+    if (!values.phoneno) {
+      errors.phoneno = "Please enter your phone number";
+    } else if (values.phoneno.length !== 10) {
+      errors.phoneno = "Invalid phone number";
     }
 
-    setIsSubmitted(Object.values(errors).every((e) => e === ""))
-    return errors
-  }
+    setIsSubmitted(Object.values(errors).every((e) => e === ""));
+    return errors;
+  };
 
   return (
-    <div id="container">
-      <div id="formContainer">
-        <div id="regStatus">{isSubmitted ? "Registration successful!" : ""}</div>
-        <form onSubmit={handleSubmit}>
-          <div><input name="username" type="text" placeholder='First name' value={formData.username} onChange={handleChange}/></div>
+    <div id="formContainerA">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            name="username"
+            type="text"
+            placeholder="First name"
+            value={formData.username}
+            onChange={handleChange}
+          />
           <p>{formErrors.username}</p>
-          <div><input name="lastname" type="text" placeholder='Last name' value={formData.lastname} onChange={handleChange} /></div>
+        </div>
+        <div>
+          <input
+            name="lastname"
+            type="text"
+            placeholder="Last name"
+            value={formData.lastname}
+            onChange={handleChange}
+          />
           <p>{formErrors.lastname}</p>
-          <div><input name="email" type="text" placeholder='Email-id' value={formData.email} onChange={handleChange} /></div>
+        </div>
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email-id"
+            value={formData.email}
+            onChange={handleChange}
+          />
           <p>{formErrors.email}</p>
-          <div><input name="phone" type="text" placeholder='Phone Number' value={formData.phone} onChange={handleChange} /></div>
-          <p>{formErrors.phone}</p>
-          <div><input  id="register" type="submit" value='Register' /></div>
-        </form>
-      </div>
+        </div>
+        <div>
+          <input
+            name="phoneno"
+            type="text"
+            placeholder="Phone Number"
+            value={formData.phoneno}
+            onChange={handleChange}
+          />
+          <p>{formErrors.phoneno}</p>
+        </div>
+        <input id="registerA" type="submit" value="Register" />
+      </form>
+      <div id="regStatusA">{isSubmitted ? "Registration successful!" : ""}</div>
     </div>
-  )
+  );
 }
 
-export default Form
+export default FormA;
