@@ -1,39 +1,42 @@
-#container{
+#container-form {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
-#formContainer{
+
+#form-wrapper {
     background-color: white;
     padding: 10px;
     box-shadow: 0px 0px 10px 0px ;
     width: fit-content;
-  }
-  input{
+}
+
+.form-input {
     border-radius: 0px;
     color: black;
     background-color: #eeecee;
-    border:none ;
+    border: none;
     padding: 5px;
     margin: 5px;
-  }
-  #register{
+}
+
+#register-button {
     cursor: pointer;
     background-color: #43a746;
     color: white;
-    /* width: 90%; */
-  }
-  p{
+}
+
+.error-message {
     margin: 0;
     font-size: 0.5em;
     color: red;
     text-align: left;
     padding-left: 9px;
-  }
-  
-  #regStatus{
+}
+
+#registration-status {
     font-size: 0.9em;
-    background-color: #3f81dd ;
+    background-color: #3f81dd;
     color: white;
-  }
+}

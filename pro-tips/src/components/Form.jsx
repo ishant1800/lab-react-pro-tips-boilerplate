@@ -3,61 +3,62 @@ import './form.css'
 
 function Form() {
 
-  const [formValues,setformValue]=useState({username:"",lastname:"",email:"",phoneno:""})
-  const [formErrors,setFormErrors]=useState({})
-  const [submit,setSubmit]=useState(false)
-  const handleChange=(e)=>{
-    const {name,value}=e.target;
-    setformValue({...formValues,[name]:value})
+  const [formData, setFormData] = useState({username:"", lastname:"", email:"", phone:""})
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData, [name]: value})
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues))
-
+    setFormErrors(validate(formData))
+    setIsSubmitted(true);
   }
 
-  const validate=(values)=>{
-    let errors={}
-    const regex= /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-    if(!values.username){
-      errors.username="Please enter your first name";
+  const validate = (values) => {
+    let errors = {}
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+    if (!values.username) {
+      errors.username = "Please enter your first name";
     }
-    if(!values.lastname){
-      errors.lastname="Please enter your last name";
+    if (!values.lastname) {
+      errors.lastname = "Please enter your last name";
     }
-    if(!values.email){
-      errors.email="Please enter your email";
-    }else if(!regex.test(values.email)){
-      errors.email="Invalid Email Id";
+    if (!values.email) {
+      errors.email = "Please enter your email";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Invalid Email Id";
     }
-    if(!values.phoneno){
-      errors.phoneno="Please enter your phone number";
-    }else if(values.phoneno.length !==10 ) {
-      errors.phoneno="Invalid phone number"
+    if (!values.phone) {
+      errors.phone = "Please enter your phone number";
+    } else if (values.phone.length !== 10) {
+      errors.phone = "Invalid phone number"
     }
 
-    setSubmit(Object.values(errors).every((e) => e === ""))
-
+    setIsSubmitted(Object.values(errors).every((e) => e === ""))
     return errors
   }
 
   return (
     <div id="container">
-    <div id="formContainer">
-      <div id="regStatus">{submit?"Registration successfull!":""}</div>
-     <form onSubmit={handleSubmit}>
-      <div><input name="username" type="text" placeholder='First name' value={formValues.username} onChange={handleChange}/></div>
-      <p>{formErrors.username}</p>
-      <div><input name="lastname" type="text" placeholder='Last name' value={formValues.lastname} onChange={handleChange} /></div>
-      <p>{formErrors.lastname}</p>
-      <div><input name="email" type="text" placeholder='Email-id' value={formValues.email} onChange={handleChange} /></div>
-      <p>{formErrors.email}</p>
-      <div><input name="phoneno" type="text" placeholder='Phone Number' value={formValues.phoneno} onChange={handleChange} /></div>
-      <p>{formErrors.phoneno}</p>
-      <div><input  id="register" type="submit" value='Register' /></div>
-     </form>
-    </div>
+      <div id="formContainer">
+        <div id="regStatus">{isSubmitted ? "Registration successful!" : ""}</div>
+        <form onSubmit={handleSubmit}>
+          <div><input name="username" type="text" placeholder='First name' value={formData.username} onChange={handleChange}/></div>
+          <p>{formErrors.username}</p>
+          <div><input name="lastname" type="text" placeholder='Last name' value={formData.lastname} onChange={handleChange} /></div>
+          <p>{formErrors.lastname}</p>
+          <div><input name="email" type="text" placeholder='Email-id' value={formData.email} onChange={handleChange} /></div>
+          <p>{formErrors.email}</p>
+          <div><input name="phone" type="text" placeholder='Phone Number' value={formData.phone} onChange={handleChange} /></div>
+          <p>{formErrors.phone}</p>
+          <div><input  id="register" type="submit" value='Register' /></div>
+        </form>
+      </div>
     </div>
   )
 }
