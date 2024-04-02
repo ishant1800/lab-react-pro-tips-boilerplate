@@ -1,32 +1,40 @@
-#app-root {
+
+body {
   margin: 0;
-  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-body{
-  margin: 0;
-}
-
-#navigation-bar{
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+#navigation {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
-  padding: 0px 10px;
-  width: 100vw;
+  align-items: center;
 }
 
-#links-container{
-  display: flex;
-  padding: 6px;
-}
-
-.navigation-link {
+.nav-links {
   text-decoration: none;
-  color: white;
+  color: #fff;
+  margin-right: 20px;
+}
+
+#linkContainer {
+  display: flex;
+  align-items: center;
+}
+
+#linkContainer h1 {
+  margin: 0;
+  flex: 1; 
+  text-align: center; 
+}
+
+#linkContainer h3 {
+  margin: 0;
   cursor: pointer;
 }
 
-.navigation-link h3 {
-  padding: 0px 10px;
+#linkContainer h3:hover {
+  text-decoration: underline;
 }
